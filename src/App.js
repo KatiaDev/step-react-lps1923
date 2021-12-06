@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import Avengers from "./components/Avengers";
 import Home from "./components/Home";
+import data from "./data";
 
 function App() {
+  const [avengers] = useState(data);
   return (
     <div className="App">
       <nav className="navbar">
@@ -15,11 +18,11 @@ function App() {
       </nav>
 
       <Switch>
+        <Route path="/avengers">
+          <Avengers avengers={avengers} />
+        </Route>
         <Route path="/">
           <Home />
-        </Route>
-        <Route path="/avengers">
-          <Avengers />
         </Route>
       </Switch>
     </div>

@@ -1,6 +1,7 @@
 import React from "react";
+import Avenger from "./Avenger";
 
-const Avengers = () => {
+const Avengers = ({ avengers }) => {
   return (
     <div>
       <h1>Avengers</h1>
