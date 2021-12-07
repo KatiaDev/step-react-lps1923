@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, Route, Switch } from "react-router-dom";
+import Avenger from "./components/Avenger";
 import Avengers from "./components/Avengers";
 import Home from "./components/Home";
 import data from "./data";
@@ -18,6 +19,9 @@ function App() {
       </nav>
 
       <Switch>
+        <Route path="/avengers/:id">
+          <Avenger avengers={avengers} />
+        </Route>
         <Route path="/avengers">
           <Avengers avengers={avengers} />
         </Route>
