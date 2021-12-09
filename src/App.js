@@ -1,24 +1,17 @@
 import React from "react";
-import { useContext } from "react";
-import { CounterContext } from "./contexts/counterContext";
-import { INCREMENT, DECREMENT } from "./contexts/counterContext";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "./actions/counterActions";
 
 function App() {
-  const { state, dispatch } = useContext(CounterContext);
+  const { counter } = useSelector((store) => store);
 
-  const handleIncrease = () => {
-    dispatch({ type: INCREMENT });
-  };
-
-  const handleDecrease = () => {
-    dispatch({ type: DECREMENT });
-  };
+  const dispatch = useDispatch();
 
   return (
     <div className="App">
-      <h2>{state.counter}</h2>
-      <button onClick={handleIncrease}> + </button>
-      <button onClick={handleDecrease}> - </button>
+      <h2>{counter}</h2>
+      <button onClick={() => dispatch(increment())}> + </button>
+      <button onClick={() => dispatch(decrement())}> - </button>
       {/* <button onClick={() => setMessage("Hello!!")}>ClickMe</button>
        <Child message={message} /> */}
     </div>
