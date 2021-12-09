@@ -1,27 +1,26 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import { useContext } from "react";
-import Child from "./Child";
 import { CounterContext } from "./contexts/counterContext";
+import { INCREMENT, DECREMENT } from "./contexts/counterContext";
 
 function App() {
-  const { counter, setCounter } = useContext(CounterContext);
-  const [message, setMessage] = useState("");
+  const { state, dispatch } = useContext(CounterContext);
 
-  const increment = () => {
-    setCounter(counter + 1);
+  const handleIncrease = () => {
+    dispatch({ type: INCREMENT });
   };
 
-  const decrement = () => {
-    setCounter(counter - 1);
+  const handleDecrease = () => {
+    dispatch({ type: DECREMENT });
   };
 
   return (
     <div className="App">
-      <h2>{counter}</h2>
-      <button onClick={increment}> + </button>
-      <button onClick={decrement}> - </button>
-      <button onClick={() => setMessage("Hello!!")}>ClickMe</button>
-      <Child message={message} />
+      <h2>{state.counter}</h2>
+      <button onClick={handleIncrease}> + </button>
+      <button onClick={handleDecrease}> - </button>
+      {/* <button onClick={() => setMessage("Hello!!")}>ClickMe</button>
+       <Child message={message} /> */}
     </div>
   );
 }
