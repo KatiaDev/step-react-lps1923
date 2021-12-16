@@ -21,7 +21,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route path="/shopping-cart">
-          <ShoppingCart />
+          <ShoppingCart books={books} />
         </Route>
         <Route path="/items/:id">
           <Item books={books} />
