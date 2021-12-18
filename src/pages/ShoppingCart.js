@@ -2,30 +2,22 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CartItem from "../components/CartItem";
 
-const ShoppingCart = ({ books }) => {
+const ShoppingCart = () => {
   const { cartItems } = useSelector((state) => state);
 
-  const cartSum = books.reduce((acc, curr) => {
-    const converted = curr.price.split("$").find((el) => {
-      return el;
-    });
+  const cartSum = cartItems
+    .reduce((acc, curr) => {
+      const converted = curr.price.split("$").find((el) => {
+        return el;
+      });
+      return parseFloat(acc) + parseFloat(converted);
+    }, 0)
+    .toFixed(2);
 
-    cartItems.map((id) => {
-      if (id === curr.isbn13) {
-        console.log("converted", converted);
-        return parseFloat(acc) + parseFloat(converted);
-      }
-      return 0;
-    });
-
-    return converted;
-  }, 0);
-
-  console.log("cartItems", cartItems);
   return (
     <div className="shopping-cart">
       {cartItems.map((item) => {
-        return <CartItem key={item} itemId={item} books={books} />;
+        return <CartItem key={item.isbn13} item={item} />;
       })}
 
       <div className="shopping-cart__checkout">

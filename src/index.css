@@ -240,9 +240,7 @@ code {
   padding: 10px;
   background: transparent;
   transition: 0.15s ease-in-out;
-  margin: 10px 0;
   color: lightcoral;
-  margin-left: 25px;
 }
 .product-button:hover {
   cursor: pointer;

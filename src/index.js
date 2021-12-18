@@ -5,7 +5,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import CartReducer from "./reducers/CartReducer";
+import CartReducer from "./reducers/cartReducer";
 
 const store = createStore(CartReducer);
 console.log("store", store.getState());

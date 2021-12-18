@@ -1,9 +1,19 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { removeItem } from "../actions/cartActions";
 
-const CartItem = ({ itemId, books }) => {
-  const foundItem = books.find((item) => {
-    return item.isbn13 === itemId;
+const CartItem = ({ item }) => {
+  const { cartItems } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
+
+  const foundItem = cartItems.find((el) => {
+    return el.isbn13 === item.isbn13;
   });
+
+  const dispatchRemoveItem = () => {
+    dispatch(removeItem(foundItem.isbn13));
+  };
 
   return (
     <div className="shopping-cart_item">
@@ -18,7 +28,12 @@ const CartItem = ({ itemId, books }) => {
           <div>
             <h3 className="shopping-cart__title"> {foundItem.title}</h3>
             <p>{foundItem.price}</p>
-            <button className="shopping-cart_item-button">Remove</button>
+            <button
+              onClick={dispatchRemoveItem}
+              className="shopping-cart_item-button"
+            >
+              Remove
+            </button>
           </div>
         </>
       ) : null}
